@@ -1,0 +1,24 @@
+<h1>Substation at Travelodge Oxford Peartree Hotel (Oxford)</h1>
+<form method="POST" action="."> {% csrf_token %}
+<select name="station">
+    {% for i in substation_name %}
+    <option value="{{ i }}">{{ i }}</option>
+    {% endfor %}
+</select>
+<button type="submit">Go</button>
+</form>
+<table border="1">
+    <hr>
+    <tr>
+        <th>Name</th>
+        <th>Coordinates (Lat, Long)</th>
+        <th>Excess Capacity (MVA)</th>
+    </tr>
+    {% for i in results %}
+    <tr>
+        <td>{{i.name}}</td>
+        <td>{{i.lattitude|floatformat:5}},{{i.longtitude|floatformat:5}}</td>
+        <td>{{i.capacity|floatformat:2 }}</td>
+    </tr>
+    {% endfor %}
+</table>
